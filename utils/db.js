@@ -11,7 +11,8 @@ class DBClient {
       .then(() => {
         this.db = this.client.db(`${dbName}`);
       })
-      .catch((err) => {
+        .catch((err) => {
+          
         console.log(err);
       });
   }
