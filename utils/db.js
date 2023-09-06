@@ -6,7 +6,9 @@ const url = `mongodb://${host}:${port}`;
 class DBClient {
   constructor() {
     this.client = new MongoClient(url, { useUnifiedTopology: true });
-    this.client
+      this.isConnected = false;
+      this.db = null;
+      this.client
       .connect()
       .then(() => {
         this.db = this.client.db(`${dbName}`);
@@ -18,10 +20,7 @@ class DBClient {
   }
 
   isAlive() {
-    if (this.client.isConnected()) {
-      return true;
-    }
-    return false;
+    return this.isConnected;
   }
 
   async nbUsers() {
